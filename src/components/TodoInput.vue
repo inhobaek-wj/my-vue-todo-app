@@ -1,14 +1,28 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text">
-    <span class="addContainer">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+    <span class="addContainer" @click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
   </div>
 </template>
 
 <script>
+export default {
+  data: function() {
+    return {
+      newTodoItem: ''
+    }
+  },
 
+  methods: {
+    addTodo() {
+      localStorage.setItem(this.newTodoItem, this.newTodoItem);
+
+      this.newTodoItem = '';
+    }
+  }
+}
 </script>
 
 <style>
