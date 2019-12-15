@@ -19,7 +19,7 @@ export default {
     addTodo() {
       localStorage.setItem(this.newTodoItem, this.newTodoItem);
 
-      clearInput();
+      this.clearInput();
     },
 
     clearInput(){
