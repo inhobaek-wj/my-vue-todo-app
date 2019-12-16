@@ -5,7 +5,7 @@
     <TodoList v-bind:propsTodoItems="todoItems"
               @removeTodoItem="removeOneItem"
               @toggleTodoComplete="toggleOneItem"/>
-    <TodoFooter />
+    <TodoFooter @clearAllTodo="clearAllItems"/>
   </div>
 </template>
 
@@ -58,6 +58,12 @@ export default {
 
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
+
+    clearAllItems() {
+      localStorage.clear();
+
+      this.todoItems = [];
     }
   },
 
