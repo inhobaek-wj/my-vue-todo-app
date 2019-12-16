@@ -4,7 +4,7 @@
       <li v-for="( todoItem, index ) in todoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="checkBtn fas fa-check" @click="toggleComplete(todoItem)"
            v-bind:class="{checkBtnCompleted: todoItem.completed}"></i>
-        <span>{{ todoItem.item }}</span>
+        <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
         <span class="removeBtn" @click="removeTodo(todoItem,index)">
           <i class="fas fa-trash-alt"></i>
         </span>
