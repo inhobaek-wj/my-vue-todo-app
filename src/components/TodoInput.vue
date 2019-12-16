@@ -4,26 +4,50 @@
     <span class="addContainer" @click="addTodo">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
+
+    <Modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        Warning!
+      </h3>
+      <span slot="body">
+        Please type somethings to do.
+      </span>
+      <i slot="footer" class="closeModalBtn fa fa-times"
+         aria-hidden="true"
+         @click="showModal = false">
+      </i>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from "./common/Modal.vue"
+
 export default {
   data: function() {
     return {
-      newTodoItem: ''
+      newTodoItem: '',
+      showModal: false
     }
   },
 
   methods: {
     addTodo() {
-      this.$emit('addTodoItem', this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem !== "") {
+        this.$emit('addTodoItem', this.newTodoItem);
+        this.clearInput();
+      } else {
+        this.showModal = true;
+      }
     },
 
     clearInput(){
       this.newTodoItem = '';
     }
+  },
+
+  components: {
+    Modal
   }
 }
 </script>
@@ -56,5 +80,9 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+
+.closeModalBtn {
+  cursor: pointer;
 }
 </style>
