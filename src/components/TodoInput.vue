@@ -17,7 +17,12 @@ export default {
 
   methods: {
     addTodo() {
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
+      let newObj = {
+        item: this.newTodoItem,
+        completed: false
+      }
+
+      localStorage.setItem(this.newTodoItem, JSON.stringify(newObj));
 
       this.clearInput();
     },
@@ -29,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 input:focus {
   outline: none;
 }
