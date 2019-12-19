@@ -5,12 +5,19 @@
 </template>
 
 <script>
+// use helpers.
+import { mapMutations } from "vuex"
+
 export default {
   methods: {
-    clearTodo() {
-      /*       this.$emit('clearAllTodo'); */
-      this.$store.commit("clearAllItems");
-    }
+    ...mapMutations({
+      clearTodo: "clearAllItems"
+    })
+
+    /* clearTodo() {
+     *   //       this.$emit('clearAllTodo');
+     *   this.$store.commit("clearAllItems");
+     * } */
   }
 }
 </script>
